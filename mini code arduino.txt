@@ -1,0 +1,68 @@
+const int xpin = A2;                  
+const int ypin = A1;                  
+const int zpin = A0;                  
+
+void setup() {
+ 
+  Serial.begin(9600);
+
+  
+  pinMode(7, OUTPUT);
+  pinMode(6, OUTPUT);
+  pinMode(5, OUTPUT);
+    pinMode(4, OUTPUT);
+}
+
+void loop() {
+  
+ int xread=analogRead(xpin);
+ int yread=analogRead(ypin);
+ int zread=analogRead(zpin);
+ Serial.print("x: ");
+ 
+ Serial.print(xread);
+
+ Serial.print("\t");
+
+ Serial.print("|y: ");
+
+ Serial.print(yread);
+
+ Serial.print("\t");
+
+ Serial.print("z: ");
+ 
+ Serial.print(zread);
+
+ Serial.print("\n");
+
+ if(xread<290 && zread>320 && yread<350)
+ {
+  digitalWrite(7,HIGH);
+  digitalWrite(6,LOW);
+  digitalWrite(5,LOW);
+  digitalWrite(4,LOW);
+ }
+  else if(xread>400 && zread>340 && yread>330)
+ {
+  digitalWrite(6,HIGH);
+  digitalWrite(7,LOW);
+  digitalWrite(5,LOW);
+  digitalWrite(4,LOW);
+ }
+  else if(xread>330 && zread>330 && yread>400)
+ {
+  digitalWrite(5,HIGH);
+  digitalWrite(7,LOW);
+  digitalWrite(6,LOW);
+  digitalWrite(4,LOW);
+ }
+ if(xread>330 && zread>330 && yread<290)
+ {
+  digitalWrite(4,HIGH);
+  digitalWrite(6,LOW);
+  digitalWrite(5,LOW);
+  digitalWrite(7,LOW);
+ }
+ }
+ 
